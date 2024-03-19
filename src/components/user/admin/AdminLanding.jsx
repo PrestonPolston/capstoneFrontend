@@ -6,7 +6,7 @@ import Paper from "@mui/material/Paper";
 import AllOrders from "./AllOrders";
 import AllProducts from "./AllProducts";
 import AllUsers from "./AllUsers";
-import MostSold from "./MostSold";
+import LowStock from "./LowStock";
 
 export default function AdminLanding() {
   return (
@@ -44,7 +44,7 @@ export default function AdminLanding() {
                   height: 200,
                 }}
               >
-                <MostSold />
+                <LowStock />
               </Paper>
             </Grid>
 

@@ -136,6 +136,9 @@ export const metalApi = createApi({
         body: orderData,
       }),
     }),
+    getAllOrders: builder.query({
+      query: () => "/api/orders",
+    }),
     getUserOrders: builder.query({
       query: (userId) => `/api/orders/${userId}`,
     }),
@@ -185,6 +188,7 @@ export const {
   useUpdateReviewMutation,
   useDeleteReviewMutation,
   useCreateOrderMutation,
+  useGetAllOrdersQuery,
   useGetUserOrdersQuery,
   useGetUserInformationQuery,
   useCreateUserInformationMutation,

@@ -259,7 +259,7 @@ const AllUsers = () => {
             color="primary"
             onClick={handleEditUserConfirm}
           >
-            Update Review
+            Update User
           </Button>
           <Button
             variant="contained"
