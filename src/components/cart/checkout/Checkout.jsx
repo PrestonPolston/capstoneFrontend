@@ -84,6 +84,15 @@ function Checkout() {
     "Success",
   ];
 
+  const handleFinish = () => {
+    const userId = localStorage.getItem("userId");
+    if (!userId) {
+      navigate("/");
+    } else {
+      navigate("/fetchUserData");
+    }
+  };
+
   function getStepContent(step) {
     switch (step) {
       case 0:
@@ -125,7 +134,7 @@ function Checkout() {
             {activeStep === steps.length - 1 ? (
               <Button
                 variant="contained"
-                onClick={() => navigate("/fetchUserData")}
+                onClick={() => handleFinish()}
                 sx={{ mt: 3, ml: 1 }}
               >
                 Return Home
