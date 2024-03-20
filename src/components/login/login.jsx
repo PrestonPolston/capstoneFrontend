@@ -26,6 +26,10 @@ export default function Login() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (formData.username.trim() === "" || formData.password.trim() === "") {
+      alert("Username or password is empty");
+      return;
+    }
     try {
       console.log(formData);
       const response = await loginUser(formData);
@@ -35,7 +39,7 @@ export default function Login() {
 
       navigate("/fetchUserData");
     } catch (error) {
-      console.error("Login failed:", error);
+      alert("Login failed:", error);
     }
   };
 

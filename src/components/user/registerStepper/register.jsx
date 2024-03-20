@@ -22,6 +22,11 @@ export default function Register({ handleNext }) {
     email: "",
   });
 
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{6,}$/;
+  const usernameRegex = /^[a-zA-Z0-9_]+$/;
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
@@ -31,20 +36,40 @@ export default function Register({ handleNext }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
-      const response = await addNewUser(formData);
 
-      if (response.status === 201 || 204) {
-        const userId = response.data.id;
-        console.log(userId);
-        localStorage.setItem("userId", userId);
-        handleNext();
-      } else {
-        setError("Registration unsuccessful. Please try again.");
+    const usernameRequired = formData.username === "";
+    const passwordRequired = formData.password === "";
+    const firstNameRequired = formData.firstName === "";
+    const lastNameRequired = formData.lastName === "";
+    const emailRequired = formData.email === "";
+    const usernameValid = usernameRegex.test(formData.username);
+    const passwordValid = passwordRegex.test(formData.password);
+    const emailValid = emailRegex.test(formData.email);
+
+    if (usernameRequired && !usernameValid) {
+      alert("Username must only contain letters, numbers, and underscores.");
+    } else if (passwordRequired && !passwordValid) {
+      alert(
+        "Password must be at least 6 characters long and contain at least one lowercase letter, one uppercase letter, one digit, and one special character."
+      );
+    } else if (emailRequired && !emailValid) {
+      alert("Please enter a valid email address.");
+    } else {
+      try {
+        const response = await addNewUser(formData);
+        console.log(response);
+        if (response.status === 201 || 204) {
+          const userId = response.data.id;
+          console.log(userId);
+          localStorage.setItem("userId", userId);
+          handleNext();
+        } else {
+          alert("Registration unsuccessful. Please try again.");
+        }
+      } catch (err) {
+        console.error(err);
+        alert("An error occurred. Please try again.");
       }
-    } catch (err) {
-      console.error(err);
-      setError("An error occurred. Please try again.");
     }
   };
 

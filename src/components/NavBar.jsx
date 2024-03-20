@@ -12,7 +12,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import Drawer from "@mui/material/Drawer";
 import ListItem from "@mui/material/ListItem";
 import Switch from "@mui/material/Switch";
-import { Menu, MenuItem } from "@mui/material";
+import { Button, Menu, MenuItem } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleTheme } from "../slice/themeSlice";
 import { useLogoutUserMutation } from "../api/metalApi";
@@ -94,14 +94,16 @@ const NavBar = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ display: { xs: "none", sm: "block" } }}
-          >
-            MetalSite
-          </Typography>
+          <Link to={"/"} style={{ textDecoration: "none", color: "inherit" }}>
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{ display: { xs: "none", sm: "block" } }}
+            >
+              MetalSite
+            </Typography>
+          </Link>
           <Box sx={{ flexGrow: 1 }} />
           <div sx={{ display: "flex", alignItems: "center" }}>
             <IconButton
