@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { decodeBase64Image } from "../../app/encode_decode";
 import { addToCart } from "../../slice/cartSlice";
+import { useNavigate } from "react-router-dom";
 import {
   Card,
   CardContent,
@@ -14,6 +15,7 @@ import {
 } from "@mui/material";
 
 const GetProductsByClass = () => {
+  const navigate = useNavigate();
   const { classItem } = useParams();
   const [quantities, setQuantities] = useState({});
   const dispatch = useDispatch();
