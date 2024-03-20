@@ -20,6 +20,16 @@ const userOrdersSlice = createSlice({
         );
       }
     );
+    builder.addMatcher(
+      metalApi.endpoints.getUserOrders.matchFulfilled,
+      (state, action) => {
+        state.userOrders = action.payload.orders;
+        manageUserOrdersStorage.saveToSessionStorage(
+          "userOrders",
+          state.userOrders
+        );
+      }
+    );
   },
 });
 

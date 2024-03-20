@@ -1,6 +1,6 @@
 import Typography from "@mui/material/Typography";
 
-const Success = ({ orderNumber, onReturnHome }) => {
+const Success = ({ orderNumber }) => {
   return (
     <>
       <Typography variant="h6" gutterBottom>

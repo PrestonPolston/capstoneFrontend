@@ -96,7 +96,7 @@ function Checkout() {
         return (
           <Success
             orderNumber={orderNumber}
-            onReturnHome={() => navigate("/")}
+            onReturnHome={() => navigate("/fetchUserData")}
           />
         );
 
@@ -125,7 +125,7 @@ function Checkout() {
             {activeStep === steps.length - 1 ? (
               <Button
                 variant="contained"
-                onClick={() => navigate("/")}
+                onClick={() => navigate("/fetchUserData")}
                 sx={{ mt: 3, ml: 1 }}
               >
                 Return Home

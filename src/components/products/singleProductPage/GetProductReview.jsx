@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Typography,
   Card,
@@ -27,7 +27,9 @@ const GetProductReview = ({ productId }) => {
 
   const handleClose = () => {
     setOpen(false);
+    window.location.reload();
   };
+
   const handleReviewSubmit = (newReview) => {
     setReviews([...reviews, newReview]);
     handleClose();
