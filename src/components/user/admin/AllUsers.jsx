@@ -211,6 +211,16 @@ const AllUsers = () => {
             }
           />
           <TextField
+            label="password"
+            value={editingUserDetails.password}
+            onChange={(e) =>
+              setEditingUserDetails({
+                ...editingUserDetails,
+                password: e.target.value,
+              })
+            }
+          />
+          <TextField
             label="First Name"
             value={editingUserDetails.firstName}
             onChange={(e) =>

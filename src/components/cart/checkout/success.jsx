@@ -1,14 +1,14 @@
-import * as React from "react";
 import Typography from "@mui/material/Typography";
 
-const Success = ({ orderNumber }) => {
+const Success = ({ orderNumber, onReturnHome }) => {
   return (
     <>
       <Typography variant="h6" gutterBottom>
         Order Successfully Placed
       </Typography>
       <Typography gutterBottom>
-        Your order has been successfully placed. Order Number: {orderNumber}
+        Your order has been successfully placed. Order Number:
+        {orderNumber}
       </Typography>
     </>
   );

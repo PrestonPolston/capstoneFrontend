@@ -1,5 +1,4 @@
 import { useGetAllOrdersQuery } from "../../../api/metalApi";
-import { Modal } from "@mui/material";
 
 const AllOrders = () => {
   const {

@@ -59,6 +59,7 @@ const NavBar = () => {
     try {
       await logoutUser();
       handleClose();
+      navigate("/");
       sessionStorage.removeItem("user");
       sessionStorage.removeItem("userPreferences");
       sessionStorage.removeItem("userInfo");
@@ -66,7 +67,6 @@ const NavBar = () => {
       sessionStorage.removeItem("userReview");
       localStorage.removeItem("userId");
       window.location.reload();
-      navigate("/");
     } catch (error) {
       console.error("Error logging out:", error);
     }
@@ -100,7 +100,7 @@ const NavBar = () => {
             component="div"
             sx={{ display: { xs: "none", sm: "block" } }}
           >
-            MUI
+            MetalSite
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
           <div sx={{ display: "flex", alignItems: "center" }}>

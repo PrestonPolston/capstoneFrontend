@@ -1,9 +1,6 @@
-import * as React from "react";
 import CssBaseline from "@mui/material/CssBaseline";
-import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import Toolbar from "@mui/material/Toolbar";
 import Paper from "@mui/material/Paper";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
@@ -17,13 +14,15 @@ import Review from "./Review";
 import { useCreateOrderMutation } from "../../../api/metalApi";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 import Success from "./success";
 import { emptyCart } from "../../../slice/cartSlice";
+import { Fragment } from "react";
 
 function Checkout() {
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [activeStep, setActiveStep] = useState(0);
   const [createOrder] = useCreateOrderMutation();
-  const [orderNumber, setOrderNumber] = React.useState("");
+  const [orderNumber, setOrderNumber] = useState("");
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -107,15 +106,8 @@ function Checkout() {
   }
 
   return (
-    <React.Fragment>
+    <Fragment>
       <CssBaseline />
-      <AppBar position="absolute" color="default" elevation={0}>
-        <Toolbar>
-          <Typography variant="h6" noWrap>
-            Company name
-          </Typography>
-        </Toolbar>
-      </AppBar>
       <Container component="main" maxWidth="sm" sx={{ mt: 4 }}>
         <Paper sx={{ my: 4, p: 4 }}>
           <Typography variant="h4" align="center" gutterBottom>
@@ -166,13 +158,13 @@ function Checkout() {
       <Box mt={5}>
         <Typography variant="body2" color="textSecondary" align="center">
           {"Copyright © "}
-          <Link color="inherit" href="https://mui.com/">
-            Your Website
+          <Link color="inherit" href="metalsite.netlify.app">
+            MetalSite
           </Link>
           {new Date().getFullYear()}.
         </Typography>
       </Box>
-    </React.Fragment>
+    </Fragment>
   );
 }
 
