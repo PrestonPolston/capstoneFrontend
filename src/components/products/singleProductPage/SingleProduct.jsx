@@ -73,6 +73,7 @@ const SingleProduct = () => {
               margin: "0 auto",
               textAlign: "center",
               padding: "20px",
+              minWidth: "350px",
             }}
           >
             <CardMedia
