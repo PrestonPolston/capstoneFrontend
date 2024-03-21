@@ -91,7 +91,7 @@ const Cart = () => {
                 width: "45%",
                 margin: "10px",
                 display: "flex",
-                minWidth: "350px",
+                minWidth: "400px",
               }}
             >
               <CardMedia
