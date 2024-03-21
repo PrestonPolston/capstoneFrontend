@@ -39,7 +39,7 @@ import {
 } from "@mui/material/colors";
 import { useUpdateUserPreferencesMutation } from "../../../api/metalApi";
 import { useNavigate } from "react-router-dom";
-import { useMediaQuery } from "@material-ui/core";
+import useMediaQuery from "@mui/material";
 
 const EditUserPreferences = () => {
   const { isMobile } = useMediaQuery("(max-width: 600px)");
