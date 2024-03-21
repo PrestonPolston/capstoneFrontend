@@ -190,13 +190,12 @@ const EditUserPreferences = () => {
       },
     })
       .then((response) => {
-        if (response) {
+        if (response.data) {
           alert("User preferences updated successfully");
         }
       })
       .catch((error) => {
-        alert("Error updating user preferences:", error);
-        alert("Failed to update user preferences");
+        alert("Error updating user preferences:", error.message);
       });
   };
 
