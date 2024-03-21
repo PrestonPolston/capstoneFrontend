@@ -27,8 +27,7 @@ export default function AllProducts() {
   };
   const [selectedProductId, setSelectedProductId] = useState(null);
   const [productContent, setProductContent] = useState("");
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+
   const [updateProduct] = useUpdateProductMutation();
   const {
     data: products = [],
@@ -135,47 +134,34 @@ export default function AllProducts() {
               ))}
             </TableHead>
             <TableBody>
-              {products
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row) => {
-                  return (
-                    <TableRow
-                      hover
-                      role="checkbox"
-                      tabIndex={-1}
-                      key={products.code}
-                    >
-                      {columns.map((column) => {
-                        const value = row[column.id];
-                        return (
-                          <TableCell key={products.id} align={column.align}>
-                            {column.label === "Edit" ? (
-                              <EditIcon
-                                onClick={() => handleEditProduct(row)}
-                              />
-                            ) : column.format && typeof value === "number" ? (
-                              column.format(value)
-                            ) : (
-                              value
-                            )}
-                          </TableCell>
-                        );
-                      })}
-                    </TableRow>
-                  );
-                })}
+              {products.map((row) => {
+                return (
+                  <TableRow
+                    hover
+                    role="checkbox"
+                    tabIndex={-1}
+                    key={products.code}
+                  >
+                    {columns.map((column) => {
+                      const value = row[column.id];
+                      return (
+                        <TableCell key={products.id} align={column.align}>
+                          {column.label === "Edit" ? (
+                            <EditIcon onClick={() => handleEditProduct(row)} />
+                          ) : column.format && typeof value === "number" ? (
+                            column.format(value)
+                          ) : (
+                            value
+                          )}
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
+                );
+              })}
             </TableBody>
           </Table>
         </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[10, 25, 100]}
-          component="div"
-          count={products.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
       </Paper>
 
       <Modal

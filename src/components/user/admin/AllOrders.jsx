@@ -13,7 +13,7 @@ const AllOrders = () => {
     display: "flex",
     flexDirection: "column",
     overflowY: "auto",
-    marginTop: "10px",
+    margin: "auto",
   };
 
   const formatDate = (dateString) => {

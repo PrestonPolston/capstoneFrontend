@@ -25,7 +25,6 @@ const AllUsers = () => {
     email: "",
     admin: false,
   };
-  const [page, setPage] = useState(0);
   const [selectedUserId, setSelectedUserId] = useState(null);
   const [userContent, setUserContent] = useState("");
   const [updateUser] = useUpdateUserMutation();
@@ -38,7 +37,7 @@ const AllUsers = () => {
     "email",
     "admin",
   ]);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+
   const {
     data: users = [],
     isError,
@@ -130,53 +129,37 @@ const AllUsers = () => {
               ))}
             </TableHead>
             <TableBody>
-              {users
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row) => {
-                  return (
-                    <TableRow
-                      hover
-                      role="checkbox"
-                      tabIndex={-1}
-                      key={row.code}
-                    >
-                      {columns.map((column) => {
-                        const value = row[column.id];
-                        if (column.label === "Admin") {
-                          return (
-                            <TableCell key={row.id} align="center">
-                              {row.admin ? <CheckIcon /> : <ClearIcon />}
-                            </TableCell>
-                          );
-                        } else {
-                          return (
-                            <TableCell align="center" key={row.id}>
-                              {column.label === "Edit" ? (
-                                <EditIcon onClick={() => handleEditUser(row)} />
-                              ) : column.format && typeof value === "number" ? (
-                                column.format(value)
-                              ) : (
-                                value
-                              )}
-                            </TableCell>
-                          );
-                        }
-                      })}
-                    </TableRow>
-                  );
-                })}
+              {users.map((row) => {
+                return (
+                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                    {columns.map((column) => {
+                      const value = row[column.id];
+                      if (column.label === "Admin") {
+                        return (
+                          <TableCell key={row.id} align="center">
+                            {row.admin ? <CheckIcon /> : <ClearIcon />}
+                          </TableCell>
+                        );
+                      } else {
+                        return (
+                          <TableCell align="center" key={row.id}>
+                            {column.label === "Edit" ? (
+                              <EditIcon onClick={() => handleEditUser(row)} />
+                            ) : column.format && typeof value === "number" ? (
+                              column.format(value)
+                            ) : (
+                              value
+                            )}
+                          </TableCell>
+                        );
+                      }
+                    })}
+                  </TableRow>
+                );
+              })}
             </TableBody>
           </Table>
         </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[10, 25, 100]}
-          component="div"
-          count={users.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
       </Paper>
       <Modal
         open={selectedUserId !== null}

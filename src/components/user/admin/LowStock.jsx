@@ -1,5 +1,4 @@
 import { useGetProductsQuery } from "../../../api/metalApi";
-
 const LowStock = () => {
   const {
     data: products = [],
@@ -15,13 +14,19 @@ const LowStock = () => {
   );
 
   if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error while fetching the data data</div>;
+  if (isError) return <div>Error while fetching the data data data</div>;
 
   return (
-    <div>
-      <div style={{ fontSize: "22px", fontWeight: "bold", color: "#5B6270" }}>
-        Low Stock (threshold: {lowStockThreshold})
-      </div>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        maxHeight: "80vh",
+        overflowY: "auto",
+        marginTop: 10,
+      }}
+    >
+      <div style={{ fontSize: "22px", fontWeight: "bold" }}>Low Stock:</div>
       {lowStockProducts.map((product, index) => (
         <div key={product.id}>
           <div>Product: {product.name}</div>
