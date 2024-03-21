@@ -87,7 +87,12 @@ const Cart = () => {
           cartItems.map((item, index) => (
             <Card
               key={item.product.id}
-              style={{ width: "45%", margin: "10px", display: "flex" }}
+              style={{
+                width: "45%",
+                margin: "10px",
+                display: "flex",
+                minWidth: "350px",
+              }}
             >
               <CardMedia
                 component="img"
