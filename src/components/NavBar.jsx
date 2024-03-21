@@ -105,7 +105,7 @@ const NavBar = () => {
             </Typography>
           </Link>
           <Box sx={{ flexGrow: 1 }} />
-          <div sx={{ display: "flex", alignItems: "center" }}>
+          {/* <div sx={{ display: "flex", alignItems: "center" }}>
             <IconButton
               size="large"
               color="inherit"
@@ -118,7 +118,7 @@ const NavBar = () => {
               placeholder="Search..."
               inputProps={{ "aria-label": "search" }}
             />
-          </div>
+          </div> */}
           {user.id ? (
             <IconButton
               size="large"

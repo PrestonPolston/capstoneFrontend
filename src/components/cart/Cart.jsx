@@ -96,16 +96,18 @@ const Cart = () => {
             >
               <CardMedia
                 component="img"
-                height="140"
+                height="80%"
                 image={decodeBase64Image(item.product.image)}
                 alt={item.product.name}
-                style={{ maxWidth: "100px", margin: "auto" }}
+                style={{ maxWidth: "50%", margin: "auto" }}
               />
               <CardContent
                 style={{
                   flex: 1,
                   display: "flex",
-                  justifyContent: "space-between",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
               >
                 <Typography variant="h5" component="div">
@@ -114,7 +116,22 @@ const Cart = () => {
                 <Typography variant="body1" color="textSecondary">
                   Price: ${item.product.price}
                 </Typography>
-                <div style={{ display: "flex", alignItems: "center" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    marginTop: "10px",
+                  }}
+                >
+                  <Button
+                    variant="contained"
+                    color="error"
+                    onClick={() => handleRemoveFromCart(item.product.id)}
+                  >
+                    Remove
+                  </Button>
+
                   <Select
                     value={quantities[item.product.id] || item.quantity}
                     onChange={(e) =>
@@ -128,15 +145,6 @@ const Cart = () => {
                       </MenuItem>
                     ))}
                   </Select>
-                </div>
-                <div>
-                  <Button
-                    variant="contained"
-                    color="error"
-                    onClick={() => handleRemoveFromCart(item.product.id)}
-                  >
-                    Remove
-                  </Button>
                 </div>
               </CardContent>
             </Card>
