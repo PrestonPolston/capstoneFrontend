@@ -39,10 +39,8 @@ import {
 } from "@mui/material/colors";
 import { useUpdateUserPreferencesMutation } from "../../../api/metalApi";
 import { useNavigate } from "react-router-dom";
-import useMediaQuery from "@mui/material";
 
 const EditUserPreferences = () => {
-  const { isMobile } = useMediaQuery("(max-width: 600px)");
   const navigate = useNavigate();
   const userPreferences = useSelector(
     (state) => state.userPreferences?.userPreferences || state.userPreferences
@@ -226,9 +224,6 @@ const EditUserPreferences = () => {
                 value={value}
                 onChange={handleChange}
                 aria-label="basic tabs example"
-                sx={{
-                  [`& .MuiTab-root`]: { fontSize: isMobile ? "14px" : "18px" },
-                }}
               >
                 <Tab label="Profile Picture" />
                 <Tab label="Primary Color" />
