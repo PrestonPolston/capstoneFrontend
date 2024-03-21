@@ -39,8 +39,10 @@ import {
 } from "@mui/material/colors";
 import { useUpdateUserPreferencesMutation } from "../../../api/metalApi";
 import { useNavigate } from "react-router-dom";
+import { useMediaQuery } from "@material-ui/core";
 
 const EditUserPreferences = () => {
+  const { isMobile } = useMediaQuery("(max-width: 600px)");
   const navigate = useNavigate();
   const userPreferences = useSelector(
     (state) => state.userPreferences?.userPreferences || state.userPreferences
@@ -49,7 +51,7 @@ const EditUserPreferences = () => {
     navigate(-1);
   };
 
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(userPreferences.profilePic);
   const [imagePreview, setImagePreview] = useState(null);
   const [value, setValue] = useState(0);
   const [primaryColor, setPrimaryColor] = useState(
@@ -173,6 +175,7 @@ const EditUserPreferences = () => {
     const file = event.target.files[0];
     if (file) {
       const base64Image = await encodeImageToBase64(file);
+      setSelectedFile(base64Image);
       setPreferencesData((prevData) => ({
         ...prevData,
         profilePic: base64Image,
@@ -194,7 +197,7 @@ const EditUserPreferences = () => {
         }
       })
       .catch((error) => {
-        console.error("Error updating user preferences:", error);
+        alert("Error updating user preferences:", error);
         alert("Failed to update user preferences");
       });
   };
@@ -223,6 +226,9 @@ const EditUserPreferences = () => {
                 value={value}
                 onChange={handleChange}
                 aria-label="basic tabs example"
+                sx={{
+                  [`& .MuiTab-root`]: { fontSize: isMobile ? "14px" : "18px" },
+                }}
               >
                 <Tab label="Profile Picture" />
                 <Tab label="Primary Color" />
@@ -242,7 +248,7 @@ const EditUserPreferences = () => {
                 {userPreferences.profilePic ? (
                   <Avatar
                     alt="Profile Picture"
-                    src={decodeBase64Image(userPreferences.profilePic)}
+                    src={decodeBase64Image(selectedFile)}
                     sx={{ width: 150, height: 150 }}
                   />
                 ) : (
