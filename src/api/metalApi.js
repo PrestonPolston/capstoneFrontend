@@ -4,6 +4,7 @@ export const metalApi = createApi({
   reducerPath: "metalApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://capstone-backend-spxi.onrender.com",
+    // "http://localhost:3000",
   }),
   endpoints: (builder) => ({
     getUsers: builder.query({ query: () => "/auth/user" }),

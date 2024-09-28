@@ -163,7 +163,15 @@ const NavBar = () => {
         <List>
           <ListItem button onClick={toggleMenu}>
             <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
-              Products
+              Home
+            </Link>
+          </ListItem>
+          <ListItem button onClick={toggleMenu}>
+            <Link
+              to="/products"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              All Products
             </Link>
           </ListItem>
           {classes.map((classItem) => (

@@ -19,6 +19,7 @@ import GetReviewByUser from "./components/user/userInfo/review/UserReviews";
 import UserOrders from "./components/user/userInfo/UserOrders";
 import GetProductsByClass from "./components/products/productsClass";
 import AdminLanding from "./components/user/admin/AdminLanding";
+import LandingPage from "./components/Landing";
 
 function App() {
   const darkMode = useSelector((state) => state.theme.darkTheme);
@@ -57,7 +58,8 @@ function App() {
       >
         <NavBar />
         <Routes>
-          <Route path="/" element={<GetAllProducts />} />
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/products" element={<GetAllProducts />} />
           <Route path="/product/:id" element={<SingleProduct />} />
           <Route path="/products/:classItem" element={<GetProductsByClass />} />
           <Route path="/login" element={<Login />} />
